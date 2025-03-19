@@ -1,45 +1,39 @@
 import java.util.Scanner;
 
-class ParametrosInvalidosException extends Exception {
-    public ParametrosInvalidosException(String message) {
+class ParameterInvalidException extends Exception {
+    public ParameterInvalidException(String message) {
         super(message);
+        // Eu usei o "super()" para garantir retornos melhores da classe Exeption, como manter a mensagem acessível pelo método getMessage() e, Garantir que a exceção se comporte como qualquer outra do java.
     }
 }
 
 public class Counter {
     public static void main(String[] args) {
-         public static void main(String[] args) {
         Scanner terminal = new Scanner(System.in);
         
         System.out.println("Digite o primeiro parâmetro:");
-        int parametroUm = terminal.nextInt();
+        int parameterOne = terminal.nextInt();
         
         System.out.println("Digite o segundo parâmetro:");
-        int parametroDois = terminal.nextInt();
+        int parameterTwo = terminal.nextInt();
         
         try {
-            // Chamando o método contendo a lógica de contagem
-            contar(parametroUm, parametroDois);
-        } catch (ParametrosInvalidosException exception) {
-            // Imprimir a mensagem de erro caso a exceção seja lançada
+            counter(parameterOne, parameterTwo);
+
+        } catch (ParameterInvalidException exception) {
             System.out.println("Erro: " + exception.getMessage());
         }
     }
 
-    static void contar(int parametroUm, int parametroDois) throws ParametrosInvalidosException {
-        // Validar se parametroUm é MAIOR que parametroDois e lançar a exceção
-        if (parametroUm > parametroDois) {
-            throw new ParametrosInvalidosException("O segundo parâmetro deve ser maior que o primeiro");
+    static void counter(int parameterOne, int parameterTwo) throws ParameterInvalidException {
+        if (parameterOne > parameterTwo) {
+            throw new ParameterInvalidException("O segundo parâmetro deve ser maior que o primeiro");
         }
 
-        int contagem = parametroDois - parametroUm;
+        int count = parameterTwo - parameterOne;
         
-        // Loop para imprimir os números com base na variável contagem
-        for (int i = 1; i <= contagem; i++) {
+        for (int i = 1; i <= count; i++) {
             System.out.println("Imprimindo o número " + i);
         }
-    }
-}
-
     }
 }
